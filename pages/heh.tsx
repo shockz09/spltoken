@@ -73,6 +73,7 @@ const Heh: FC = ({ }) => {
     const _file = await toMetaplexFileFromBrowser(browserFile);
     setFile(_file);
     setFileName(_file.fileName)
+    setImg(true)
   }
   console.log(file?.buffer)
   const base64Image: string = Buffer.from(file?.buffer ?? "").toString('base64')
@@ -131,18 +132,13 @@ const Heh: FC = ({ }) => {
 
 
                   <div className="mt-5 mb-2   flex  text-2xl">Meta data</div>
-                  <Tabs defaultValue="account" className=" ">
+                  <Tabs defaultValue="password" className=" ">
                     <TabsList>
+  <TabsTrigger value="password">Create Metadata</TabsTrigger>
                       <TabsTrigger value="account">Use Existing Metadata URL</TabsTrigger>
-                      <TabsTrigger value="password">Create Metadata</TabsTrigger>
+                    
                     </TabsList>
-                    <TabsContent value="account" onClick={() => { setMetadataMethod('url'), setTokenDescription('') }}>
-                      <label className=" mt-2 flex">Metadata URL</label>
-
-                      <Input type="text" onChange={(e) => setMetadataURL(e.target.value)} placeholder="Enter the metadata URL" className="flex h-10 w-full rounded-md  px-3 py-2 text-sm  bg-black text-white mt-2  " />
-
-                    </TabsContent>
-                    <TabsContent value="password" onClick={() => { setMetadataMethod('upload'), setMetadataURL(''), setFile(undefined), setFileName('') }}>
+ <TabsContent value="password" onClick={() => { setMetadataMethod('upload'), setMetadataURL(''), setFile(undefined), setFileName('') }}>
                       <label className="  flex">Description</label>
 
 
@@ -168,7 +164,7 @@ const Heh: FC = ({ }) => {
                      <div className="flex items-center border rounded-md p-2 mt-4">
   <div className="flex items-center justify-between w-full">
     <div className="flex items-center">
-      {(img !== false)? (
+      {(img === true)? (
   <Image
     src={`data:image/jpeg;base64,${base64Image}`}
     className="rounded-full h-10 w-10 border"
@@ -197,6 +193,13 @@ const Heh: FC = ({ }) => {
   </div>
 </div>
                     </TabsContent>
+                    <TabsContent value="account" onClick={() => { setMetadataMethod('url'), setTokenDescription('') }}>
+                      <label className=" mt-2 flex">Metadata URL</label>
+
+                      <Input type="text" onChange={(e) => setMetadataURL(e.target.value)} placeholder="Enter the metadata URL" className="flex h-10 w-full rounded-md  px-3 py-2 text-sm  bg-black text-white mt-2  " />
+
+                    </TabsContent>
+                   
                   </Tabs>
                   <div className="mt-5 mb-2  flex ">Authority</div>
                   <div className="flex justify-center mb-4 ">
