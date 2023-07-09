@@ -56,6 +56,7 @@ const Heh: FC = ({ }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [metadataMethod, setMetadataMethod] = useState('url')
   const [tokenDescription, setTokenDescription] = useState('')
+  const [img,setImg] = useState(false)
   const [file, setFile] = useState<Readonly<{
     buffer: Buffer;
     fileName: string;
@@ -164,21 +165,37 @@ const Heh: FC = ({ }) => {
                           onChange={handleFileChange}
                           style={{ display: 'none' }} />
                       </div>
-                      <div className="flex items-center border rounded-md p-2 mt-4">
-                        <div className="flex items-center">
-                          <Image
-                            src={`data:image/jpeg;base64,${base64Image}`}
-                            className="rounded-full h-10 w-10"
-                            alt=""
-                            width={50}
-                            height={50}
-                          />
-                          <div className="ml-2">
-                            <p className="mb-1">{tokenName}</p>
-                            <p className="">{symbol}</p>
-                          </div>
-                        </div>
-                      </div>
+                     <div className="flex items-center border rounded-md p-2 mt-4">
+  <div className="flex items-center justify-between w-full">
+    <div className="flex items-center">
+      {(img !== false)? (
+  <Image
+    src={`data:image/jpeg;base64,${base64Image}`}
+    className="rounded-full h-10 w-10 border"
+    alt=""
+    width={50}
+    height={50}
+  />
+) : (
+  <img
+    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgICAgICAgIBwcHBwoHBwcHBw8ICQgKFREWFhURExMYKCggGCYlGxMTITEhJSkrLi4uFx8zODM4NygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAKgBLAMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAAAAQIH/8QAHhABAQACAQUBAAAAAAAAAAAAAAERITECQVFhoYH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A4aKAioAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvTjO8yepmlQAABQAEVABQEFQAa6cd0BBQEAAAAFQAAAAAFBAAAAAAAAAAAAAAUIAIoAAAAAUKCAAAAAAqAAAAtiKCAAAoICggAAAAAAAAAKAAAAAAAAioCoAKCAKIAAACgCAAAAAAAAAAAAAAAAAKsmb4QAAAAAABBQEFQAVAAAFQAAAAAAAAAAAAAAAAAAAABQAAAAAAAEVABQAvIAgoCAAAACoAAC638QAAAAAAAAAFJcXMLsEABQAAAAAEFBAAUAEAAAAAAAAFuNYzxvPlAAAAUEAAAAAAABUAAAFRagAAKIAAAC5+ICoAAAAAAAAACoAAAAAAAAAAAAAAAKgAAAAAAALbbz4wgAACoAAAAoICggAAqALhABdo109VksnfkGQAAAAAAAFQAAAAAAAAAFQAAAAAAAAAAAAAAAAAWIAAAAAC0EXCLLve/V7ggt5/UAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABUAAAH//Z" // Replace with your desired placeholder image link
+    className="rounded-full h-10 w-10 border"
+    alt=""
+    width={50}
+    height={50}
+  />
+)}
+      <div className="ml-2">
+        <p className="mb-1">{tokenName}</p>
+        <p className="">{symbol}</p>
+      </div>
+    </div>
+    <div className="text-right ">
+      <p className="pr-2">$69</p>
+      <p className="text-green-400">250%</p>
+    </div>
+  </div>
+</div>
                     </TabsContent>
                   </Tabs>
                   <div className="mt-5 mb-2  flex ">Authority</div>
