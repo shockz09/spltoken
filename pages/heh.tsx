@@ -6,28 +6,6 @@ import { CreateTokenButton } from "../utils/CreateTokenButton";
 import { MetaplexFileTag, toMetaplexFileFromBrowser } from "@metaplex-foundation/js";
 import dynamic from 'next/dynamic';
 import Image from "next/image";
-import { Input } from "@/components/ui/input"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "@/components/ui/menubar"
-import { PublicKey } from '@solana/web3.js';
-
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
 
 const WalletModalProvider = dynamic(() => import('@solana/wallet-adapter-react-ui').then(mod => mod.WalletModalProvider), { ssr: false });
 
@@ -79,24 +57,19 @@ const Heh: FC = ({ }) => {
   const base64Image: string = Buffer.from(file?.buffer ?? "").toString('base64')
   console.log(`data:image/jpeg;base64,${base64Image}`)
   return (
-    <div className="container text-white mx-auto max-w-6xl p-8 2xl:px-0 ">
-      <div className="">
-        <Menubar className="h-[50px] bg-transparent ">
-          <MenubarMenu>
-            <Select>
-              <SelectTrigger className="w-[150px]">
-                <SelectValue placeholder="Mainnet" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">Mainnet</SelectItem>
-                <SelectItem value="dark">Devnet</SelectItem>
-              </SelectContent>
-            </Select>
-            <WalletModalProvider>
-              <WalletMultiButton />
-            </WalletModalProvider>
-          </MenubarMenu>
-        </Menubar>
+    <div className="container text-white mx-auto max-w-6xl p-8 2xl:px-0">
+      <div className="flex flex-row ">
+
+        <select id="" className=" w-1/6 bg-black mr-80 ">
+          <option selected>Mainnet</option>
+          <option value="US">Devnet</option>
+
+        </select>
+        <div className="ml-80" >
+          <WalletModalProvider>
+            <WalletMultiButton />
+          </WalletModalProvider>
+        </div>
 
       </div>
       <div>
@@ -179,7 +152,7 @@ const Heh: FC = ({ }) => {
                   <div className="mt-5 mb-2  flex ">Authority</div>
                   <div className="flex justify-center mb-4 ">
 
-                    <Label className="text-lg" htmlFor="">Enable Freeze authority</Label>
+                    <label className="text-lg" htmlFor="">Enable Freeze authority</label>
                     <input className=" mx-2 mt-2"
                       type="checkbox"
                       checked={isChecked}
